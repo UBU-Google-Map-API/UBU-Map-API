@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>
+    ข้อมูลสีเเต่ละป้าย</h1>
+<mat-dialog-content>
+    <table style="width:100% " text-align="center" border="2" bordercolor="white">
+        <tbody>
+            <tr>
+                <td bgcolor="#630436">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td class="CellWithComment">&nbsp;&nbsp; ก.1
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#F6D400">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td class="CellWithComment">&nbsp;&nbsp; ก.2
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#B65FCF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td class="CellWithComment">&nbsp;&nbsp; ป้ายพระราชทาน
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog (click)="openDialog()">ข้อมูลสมาชิกแผนที่</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

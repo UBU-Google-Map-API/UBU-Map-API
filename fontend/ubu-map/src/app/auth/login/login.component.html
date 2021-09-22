@@ -1,0 +1,21 @@
+<div class="card-container bgimg">
+    <mat-card class="card-content">
+        <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+            <div class="fadeIn first">
+                <img src="https://upload.wikimedia.org/wikipedia/th/2/29/Logoubu.gif" id="icon" alt="User Icon">
+            </div>
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label class="center">Username</mat-label>
+                <input matInput placeholder="User.." formControlName="username" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label class="center">Password</mat-label>
+                <input matInput type="password" placeholder="xxx" formControlName="password" />
+            </mat-form-field>
+            <div fxLayout="row" fxLayoutAlign="space-between none">
+                <button mat-raised-button color="primary" (click)='back()'><span class="material-icons">arrow_back</span>Back</button>
+                <button color="accent" mat-raised-button type="submit"><span class="material-icons">login</span>LOGIN</button>
+            </div>
+        </form>
+    </mat-card>
+</div>

@@ -1,0 +1,85 @@
+<app-toolbar></app-toolbar>
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>เมนูต่างๆ</mat-card-title>
+                    </mat-card-header>
+                    <hr>
+
+                    <mat-card-content class="font">
+                        <a href="https://www.youtube.com/watch?v=Qv_J7MS4PTM&ab_channel=AthipSirisawetkunwong" target="_blank">User</a>
+                        <br>
+                        <a href="https://www.youtube.com/watch?v=Qv_J7MS4PTM&ab_channel=AthipSirisawetkunwong" target="_blank">คู่มือการใช้งานสำหรับ Admin</a>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+            <div class="col-md-9">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>ข้อมูลผู้ใช้งาน</mat-card-title>
+                    </mat-card-header>
+                    <hr>
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <button mat-flat-button color="primary" routerLink="/signup">
+                        <mat-icon>add</mat-icon>Add
+                    </button>
+                        <mat-form-field class="mat-form-field">
+                            <mat-label><span class="material-icons">search</span></mat-label>
+                            <br>
+                            <input matInput (keyup)="applyFilter($event)" placeholder="Search..." #input>
+                        </mat-form-field>
+                    </div>
+                    <mat-card-content>
+                        <div class="example-container mat-elevation-z8">
+                            <mat-table [dataSource]="dataSource" matSort>
+                                <ng-container matColumnDef="name">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="username">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Username </mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.username}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="Role">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">
+                                        <p *ngIf="row.role_id == 1">Admin</p>
+
+                                        <p *ngIf="row.role_id == 3 || row.role_id == null">Author</p>
+                                        <!-- <p *ngIf="row.role_id == null">Author</p> -->
+                                    </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="Action">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">
+                                        <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" (click)='Views(row.id)'>
+                                            <mat-icon>visibility</mat-icon>
+                                          </button>
+                                        <button mat-icon-button color="accent" aria-label="Example icon button with a home icon" (click)='Edit(row.name)'>
+                                            <mat-icon>edit</mat-icon>
+                                          </button>
+                                        <button mat-icon-button color="warn" aria-label="Example icon button with a home icon" (click)='Delete(row.id)'>
+                                            <mat-icon>delete</mat-icon>
+                                          </button>
+                                    </mat-cell>
+                                </ng-container>
+
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                            </mat-table>
+
+                            <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<app-toolbar></app-toolbar>
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>เมนูต่างๆ</mat-card-title>
+                    </mat-card-header>
+                    <hr>
+
+                    <mat-card-content class="font">
+                        <a href="https://www.youtube.com/watch?v=Qv_J7MS4PTM&ab_channel=AthipSirisawetkunwong" target="_blank">User</a>
+                        <br>
+                        <a href="https://www.youtube.com/watch?v=Qv_J7MS4PTM&ab_channel=AthipSirisawetkunwong" target="_blank">คู่มือการใช้งานสำหรับ Admin</a>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+            <div class="col-md-9">
+                <mat-card *ngFor="let user of userData">
+                    <mat-card-header>
+                        <mat-card-title>User: {{user.username}}</mat-card-title>
+                    </mat-card-header>
+                    <hr>
+                    <div class="example-button-row">
+                        <button mat-raised-button color="primary" (click)='back()'><span class="material-icons">arrow_back</span>Back</button>
+                        <button mat-raised-button color="accent" (click)='Edit(user.name)'><span class="material-icons">edit</span>Edit</button>
+                        <button mat-raised-button color="warn" (click)='Delete(userID)'> <span class="material-icons">delete</span>Delete</button>
+                    </div>
+                    <br>
+                    <mat-card-content>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th>ID</th>
+                                    <td>{{user.id}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Username</th>
+                                    <td>{{user.username}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Name</th>
+                                    <td>{{user.name}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </mat-card-content>
+
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

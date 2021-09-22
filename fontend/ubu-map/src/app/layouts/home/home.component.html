@@ -1,0 +1,120 @@
+<app-toolbar></app-toolbar>
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <mat-card class="navbar-custom">
+                    <mat-card-title>เพิ่มข้อมูล</mat-card-title>
+                </mat-card>
+                <mat-card>
+                    <mat-card-content>
+                        <form class="example-form" [formGroup]="profileForm" (ngSubmit)="onSubmitForm()">
+
+                            <mat-form-field appearance="outline" class="input-custom">
+                                <mat-label>รหัสโรงเรียน</mat-label>
+                                <input matInput type="text" formControlName="Id" placeholder="รหัสโรงเรียน">
+                                <mat-hint>*Required</mat-hint>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="input-custom">
+                                <mat-label>ชื่อ</mat-label>
+                                <input matInput type="text" formControlName="Name" placeholder="ชื่อ">
+                                <mat-hint>*Required</mat-hint>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="input-custom">
+                                <mat-label>ที่อยู่</mat-label>
+                                <input matInput type="text" formControlName="Address" placeholder="ตำบล... อำเภอ... จังหวัด..... 99999">
+                                <mat-hint>*Required</mat-hint>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="input-custom">
+                                <mat-label>หมวดหมู่</mat-label>
+                                <mat-select formControlName="Category" required>
+                                    <mat-option *ngFor="let category of Categorys" [value]="category">
+                                        {{category}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-hint>*Required</mat-hint>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="input-custom">
+                                <mat-label>จังหวัด</mat-label>
+                                <mat-select formControlName="Province" required>
+                                    <mat-option *ngFor="let p of Provinces" [value]="p.Province">
+                                        {{p.Province}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-hint>*Required</mat-hint>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="input-custom">
+                                <mat-label>ระดับ</mat-label>
+                                <mat-select formControlName="Status" required>
+                                    <mat-option *ngFor="let s of Statu" [value]="s">
+                                        {{s}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-hint>*Required</mat-hint>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="col-md-4" style="padding: 2%;">
+                                <mat-label>วันที่ได้รับป้ายพระราชทาน</mat-label>
+                                <input matInput [matDatepicker]="dp" [(ngModel)]="date" (dateInput)="addEvent('input', $event)" datePickerFormat="DD/MM/YYYY" formControlName="Register_date">
+                                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                                <mat-datepicker #dp></mat-datepicker>
+                                <mat-error>*โปรดระบุวันที่ได้รับป้ายพระราชทาน โดยเลือกวัน เดือน และปี ค.ศ.</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="col-md-4" style="padding: 2%;">
+                                <mat-label>วันที่ได้รับเกียรติบัตรขั้นที่ 1</mat-label>
+                                <input matInput [matDatepicker]="dp2" datePickerFormat="DD/MM/YYYY" formControlName="Certificate_date1">
+                                <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                                <mat-datepicker #dp2></mat-datepicker>
+                                <mat-error>*โปรดระบุวันที่ได้รับเกียรติบัตรขั้นที่ 1 โดยเลือกวัน เดือน และปี ค.ศ.</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="col-md-4" style="padding: 2%;">
+                                <mat-label>วันที่ได้รับเกียรติบัตรขั้นที่ 2</mat-label>
+                                <input matInput [matDatepicker]="dp3" datePickerFormat="DD/MM/YYYY" formControlName="Certificate_date2">
+                                <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                                <mat-datepicker #dp3></mat-datepicker>
+                                <mat-error>*โปรดระบุวันที่ได้รับเกียรติบัตรขั้นที่ 2 โดยเลือกวัน เดือน และปี ค.ศ.</mat-error>
+                            </mat-form-field>
+
+
+                            <a href="https://www.youtube.com/watch?v=_moh_pi13ag">วิธีเพิ่ม URL video จากเว็บไซต์ Youtube</a>
+                            <mat-form-field appearance="outline" class="input-custom">
+                                <mat-label>URL วีดีโอ</mat-label>
+                                <input matInput type="text" formControlName="Vdo" placeholder="URL">
+                            </mat-form-field>
+
+                            <a href="https://www.youtube.com/watch?time_continue=322&amp;v=C1qT0TslTNo&amp;feature=emb_title">หาค่า Latitude(ละติจูด),Latitude(ละติจูด) </a>
+
+                            <mat-form-field appearance="outline" class="input-custom">
+                                <mat-label>ละติจูด</mat-label>
+                                <input matInput type="text" formControlName="Latitude" placeholder="ละติจูด">
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="input-custom">
+                                <mat-label>ลองจิจูด</mat-label>
+                                <input matInput type="text" formControlName="Longitude" placeholder="ลองจิจูด">
+                            </mat-form-field>
+                            <div>อัพโหลดรูปภาพ
+                                <p style="color: red;">*โปรดเลือกรูปภาพอย่างน้อย 1 รูป ขนาดไม่เกิน 5 MB โดยมีสกุลไฟล์ jpeg,png,jpg,gif,svg เท่านั้น</p>
+                            </div>
+                            <div>
+                                <input type="file" name="image" multiple (change)="selectMultipleImages($event)" />
+                            </div>
+                            <!-- <button (click)="onSubmitMultiple()">Upload</button> -->
+                            <br>
+
+                            <button mat-raised-button color="primary" type="submit" [disabled]="profileForm.invalid">บันทึก</button>
+                            <!-- <button mat-raised-button color="primary" type="submit" [disabled]="profileForm.valid">บันทึก2</button> -->
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

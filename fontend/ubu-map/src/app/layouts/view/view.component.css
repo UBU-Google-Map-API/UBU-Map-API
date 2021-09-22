@@ -1,0 +1,17 @@
+table {
+    width: 100%;
+}
+
+.container_Style {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.example-button-row {
+    display: table-cell;
+    width: 490px;
+}
+
+.example-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+}

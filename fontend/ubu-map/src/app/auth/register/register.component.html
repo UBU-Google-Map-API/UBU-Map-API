@@ -1,0 +1,114 @@
+<!-- <div class="container_Style">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>เมนูต่างๆ</mat-card-title>
+                    </mat-card-header>
+                    <hr>
+
+                    <mat-card-content class="font">
+                        <a href="https://www.youtube.com/watch?v=Qv_J7MS4PTM&ab_channel=AthipSirisawetkunwong" target="_blank">User</a>
+                        <br>
+                        <a href="https://www.youtube.com/watch?v=Qv_J7MS4PTM&ab_channel=AthipSirisawetkunwong" target="_blank">คู่มือการใช้งานสำหรับ Admin</a>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col-md-9">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Create New User</mat-card-title>
+                    </mat-card-header>
+                    <hr>
+                    <div>
+                        <form [formGroup]="signupForm" (ngSubmit)="signup()" novalidate>
+                            <mat-form-field appearance="outline" class="input-custom" class="full">
+                                <mat-label>Name</mat-label>
+                                <input matInput placeholder="Name" formControlName="name" />
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="input-custom" class="full">
+                                <mat-label>username</mat-label>
+                                <input matInput placeholder="UserName" formControlName="username" />
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="input-custom" class="full">
+                                <mat-label>Password</mat-label>
+                                <input matInput type="password" placeholder="Password" formControlName="password" />
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="input-custom" class="full">
+                                <mat-label>Roles</mat-label>
+                                <mat-select formControlName="roles" required>
+                                    <mat-option *ngFor="let r of role" [value]="r">
+                                        {{r}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <div fxLayout="row" fxLayoutAlign="space-between none">
+                                <button mat-raised-button color="primary" (click)='back()'><span class="material-icons">arrow_back</span>Back</button>
+                                <button mat-raised-button color="primary" [disabled]="!signupForm.valid" type="submit"><span>Create</span></button>
+                            </div>
+                        </form>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div> -->
+<app-toolbar></app-toolbar>
+<div class="container container_Style">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>เมนูต่างๆ</mat-card-title>
+                    </mat-card-header>
+                    <hr>
+
+                    <mat-card-content class="font">
+                        <a href="https://www.youtube.com/watch?v=Qv_J7MS4PTM&ab_channel=AthipSirisawetkunwong" target="_blank">User</a>
+                        <br>
+                        <a href="https://www.youtube.com/watch?v=Qv_J7MS4PTM&ab_channel=AthipSirisawetkunwong" target="_blank">คู่มือการใช้งานสำหรับ Admin</a>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+            <div class="col-md-9">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Create New User</mat-card-title>
+                    </mat-card-header>
+                    <hr>
+                    <div>
+                        <form [formGroup]="signupForm" (ngSubmit)="signup()" novalidate>
+                            <mat-form-field appearance="outline" class="input-custom" class="full">
+                                <mat-label>Name</mat-label>
+                                <input matInput placeholder="Name" formControlName="name" />
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="input-custom" class="full">
+                                <mat-label>username</mat-label>
+                                <input matInput placeholder="UserName" formControlName="username" />
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="input-custom" class="full">
+                                <mat-label>Password</mat-label>
+                                <input matInput type="password" placeholder="Password" formControlName="password" />
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="input-custom" class="full">
+                                <mat-label>Roles</mat-label>
+                                <mat-select formControlName="roles" required>
+                                    <mat-option *ngFor="let r of role" [value]="r">
+                                        {{r}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <div fxLayout="row" fxLayoutAlign="space-between none">
+                                <button mat-raised-button color="primary" (click)='back()'><span class="material-icons">arrow_back</span>Back</button>
+                                <button mat-raised-button color="primary" [disabled]="!signupForm.valid" type="submit"><span>Create</span></button>
+                            </div>
+                        </form>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

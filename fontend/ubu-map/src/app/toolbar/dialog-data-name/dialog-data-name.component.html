@@ -1,0 +1,24 @@
+<mat-dialog-content>
+    <h2>ข้อมูลสมาชิกจังหวัด</h2>
+    <div>
+        <table>
+            <tr>
+                <th>ลำดับ</th>
+                <th>ชื่อ</th>
+                <th>จังหวัด</th>
+                <th>ระดับ</th>
+            </tr>
+            <tr *ngFor="let data of dataSource; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{data.Name}}</td>
+                <td>{{data.Province}}</td>
+                <td>{{data.Status}}</td>
+            </tr>
+        </table>
+
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close color="accent">close</button>
+</mat-dialog-actions>

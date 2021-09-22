@@ -1,0 +1,104 @@
+<!-- <mat-toolbar class="mat-elevation-z10 toolbar-color col-md" fxLayout="row">
+    <div>
+        <img style='margin-right: 10px;' src="./assets/logo/logo2.png" width="35" height="35" alt="no image">
+        <span class="valign-center" mat-icon-button [routerLink]="['']">
+            <div style="font-size: 1rem; text-align: right;">แผนที่แสดงตำแหน่งหน่วยงานร่วมสนองพระราชดำริโครงการอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริฯ</div>
+        </span>
+        <img src="./assets/logo/Logoubu.gif" width="35" height="35" alt="no image">
+    </div>
+
+    <div *ngIf="!isAuthenticated" fxFlex fxLayout="row" fxLayoutAlign="flex-end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="20px" class="menu-items">
+            <li><a (click)="openDialog()">แสดงแถบป้าย</a></li>
+            <li>
+                <a routerLinkActive="active-link" routerLink="/login">
+                    <span>Login</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div fxFlex fxLayout="row" fxLayoutAlign="flex-end" fxHide.xs *ngIf="isAuthenticated">
+        <button mat-button [matMenuTriggerFor]="menu">{{username}}</button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="linkAdmin()">แก้ไขข้อมูล</button>
+            <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+    </div>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"><mat-icon>more_vert</mat-icon></button>
+    <div fxFlex fxLayout="row" fxLayoutAlign="flex-end" fxHide.gt-xs>
+        <a class="valign-center" mat-icon-button [matMenuTriggerFor]="menu" aria-label="additional links">
+            <span class="material-icons">list</span>
+        </a>
+        <mat-menu #menu="matMenu">
+            <div *ngFor="let option of options">
+                <div *ngIf="option == 'หน้าแรก'">
+                    <button (click)="home()" mat-menu-item>หน้าแรก</button>
+                </div>
+                <div *ngIf="option == 'โรงเรียน'">
+                    <button (click)="onClick(option)" mat-menu-item>โรงเรียน</button>
+                </div>
+                <div *ngIf="option == 'องค์กรปกครองส่วนท้องถิ่น'">
+                    <button (click)="onClick(option)" mat-menu-item>องค์กรปกครองส่วนท้องถิ่น</button>
+                </div>
+            </div>
+            <mat-form-field appearance="outline">
+                <mat-label>จังหวัด</mat-label>
+                <mat-select [(ngModel)]='selectedValue' (ngModelChange)='OnselectedValue($event)'>
+                    <mat-option *ngFor="let p of Provinces" [value]="p.Province">
+                        {{p.Province}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-menu>
+    </div>
+</mat-toolbar> -->
+
+<mat-toolbar class="toolbar-color">
+    <img style='margin-right: 10px;' src="./assets/logo/logo2.png" width="35" height="35" alt="no image">
+    <span class="valign-center" mat-icon-button routerLink="">
+        <div style="font-size: 1rem; text-align: right;">แผนที่แสดงตำแหน่งหน่วยงานร่วมสนองพระราชดำริโครงการอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริฯ</div>
+    </span>
+    <img src="./assets/logo/Logoubu.gif" width="35" height="35" alt="no image">
+
+    <div class="spacer"></div>
+
+    <div *ngIf="!isAuthenticated">
+        <a mat-raised-button color="accent" (click)="openDialog()">แสดงแถบป้าย</a>
+        <button mat-button routerLinkActive="active-link" routerLink="login">
+            <mat-icon>login</mat-icon> Login</button>
+    </div>
+
+    <div *ngIf="isAuthenticated && isRole == 'super-admin'">
+        <a mat-raised-button color="accent" (click)="linkAdmin()">แก้ไขข้อมูล</a>
+    </div>
+
+    <div *ngIf="isAuthenticated">
+        <h5 class="container">{{username}}</h5>
+    </div>
+
+    <button mat-icon-button aria-label="Example icon button with a menu icon" [matMenuTriggerFor]="animals"><mat-icon>menu</mat-icon></button>
+    <mat-menu #animals="matMenu">
+        <div *ngFor="let option of options">
+            <div *ngIf="option == 'หน้าแรก'">
+                <button (click)="home()" mat-menu-item>หน้าแรก</button>
+            </div>
+            <div *ngIf="option == 'โรงเรียน'">
+                <button (click)="onClick(option)" mat-menu-item>โรงเรียน</button>
+            </div>
+            <div *ngIf="option == 'องค์กรปกครองส่วนท้องถิ่น'">
+                <button (click)="onClick(option)" mat-menu-item>องค์กรปกครองส่วนท้องถิ่น</button>
+            </div>
+        </div>
+        <button mat-menu-item [matMenuTriggerFor]="invertebrates">จังหวัด</button>
+        <button *ngIf="isAuthenticated" mat-menu-item routerLinkActive="active-link" (click)="logout()"><mat-icon>logout</mat-icon> Logout</button>
+    </mat-menu>
+
+    <mat-menu #invertebrates="matMenu">
+        <div *ngFor="let p of Provinces">
+            <button (click)="test(p.Province)" mat-button>{{p.Province}}</button>
+        </div>
+    </mat-menu>
+
+
+</mat-toolbar>

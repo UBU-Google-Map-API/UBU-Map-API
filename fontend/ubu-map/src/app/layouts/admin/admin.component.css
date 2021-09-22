@@ -1,0 +1,64 @@
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 250px;
+}
+
+td,
+th {
+    width: 25%;
+}
+
+section {
+    display: table;
+}
+
+.example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+}
+
+.example-button-row {
+    display: table-cell;
+    width: 490px;
+}
+
+.example-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+}
+
+.font {
+    font-size: 16px;
+}
+
+.example-card {
+    max-width: 400px;
+}
+
+.buttonstyle {
+    width: 67px;
+    height: 30px;
+    font-size: 14px;
+}
+
+.container_Style {
+    width: 100%;
+    min-height: 100vh;
+}

@@ -1,0 +1,38 @@
+/* agm-map {
+    position: absolute; 
+    height: 100%; 
+    width: 100%; 
+    padding: 0px;
+    border-width: 0px;
+    margin: 0px;
+    left: 0px; 
+    top: 0px; 
+    touch-action: pan-x pan-y;
+    z-index: 3;
+  } */
+
+agm-map {
+    height: 100%;
+    /* position: absolute; */
+    /* height: 100%;
+    width: 100%; */
+    /* padding: 0px;
+    border-width: 0px;
+    margin: 0px;
+    left: 0px;
+    top: 0px;
+    touch-action: pan-x pan-y;
+    z-index: 3; */
+}
+
+agm-info-window {
+    padding-right: 0px;
+    padding-bottom: 0px;
+    max-width: 648px;
+    max-height: 1024px;
+    min-width: 0px;
+}
+
+.section {
+    display: block;
+}

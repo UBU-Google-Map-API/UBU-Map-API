@@ -1,0 +1,72 @@
+<app-toolbar></app-toolbar>
+<agm-map class="section" [latitude]="lat" [longitude]="lng" [zoom]="zoom" disableDoubleClickZoom="true">
+    <div *ngFor="let location of locations; let i = index">
+        <!-- ก1 -->
+        <div *ngIf="location.Status == 'ก.1'">
+            <agm-marker (markerClick)="clickedMarker(infowindow)" [latitude]="location.Latitude" [longitude]="location.Longitude" [iconUrl]='icon0'>
+                <agm-info-window #infowindow>
+                    <div id="content" class="form-group col-md-12 row">
+                        <div class="col-md-12">
+                            <a routerLink="/detail/{{location.Name}}" routerLinkActive="active" tabindex="0">
+                                <h1 id="firstHeading" class="firstHeading">{{ location.Name }}</h1>
+                            </a>
+                        </div><br>
+                        <div id="bodyContent" class="col-md-6">
+                            <p></p>
+                            <h6>{{ location.Name }}</h6><br>ที่อยู่ : {{ location.Address }} {{location.Province}}<br>ระดับ: {{ location.Status }}
+                            <p></p>
+                        </div>
+                        <div id="bodyContent" class="col-md-4">
+                            <center><img src="http://localhost:3000/images/{{location.Picture_1}} " alt="รูปประกอบ" height="230" width="300"></center>
+                        </div>
+                    </div>
+                </agm-info-window>
+            </agm-marker>
+        </div>
+        <!-- ก.2 -->
+        <div *ngIf="location.Status == 'ก.2'">
+            <agm-marker (markerClick)="clickedMarker(infowindow)" [latitude]="location.Latitude" [longitude]="location.Longitude" [iconUrl]='icon1'>
+                <agm-info-window #infowindow>
+                    <div id="content" class="form-group col-md-12 row">
+                        <div class="col-md-12">
+                            <a routerLink="/detail/{{location.Name}}" routerLinkActive="active" tabindex="0">
+                                <h1 id="firstHeading" class="firstHeading">{{ location.Name }}</h1>
+                            </a>
+                        </div><br>
+                        <div id="bodyContent" class="col-md-6">
+                            <p></p>
+                            <h6>{{ location.Name }}</h6><br>ที่อยู่ : {{ location.Address }} {{location.Province}}<br>ระดับ: {{ location.Status }}
+                            <p></p>
+                        </div>
+                        <div id="bodyContent" class="col-md-4">
+                            <center><img src="http://localhost:3000/images/{{location.Picture_1}} " alt="รูปประกอบ" height="230" width="300"></center>
+                        </div>
+                    </div>
+                </agm-info-window>
+            </agm-marker>
+        </div>
+        <!-- ป้ายพระราชทาน -->
+        <div *ngIf="location.Status == 'ป้ายพระราชทาน'">
+            <agm-marker (markerClick)="clickedMarker(infowindow)" [latitude]="location.Latitude" [longitude]="location.Longitude" [iconUrl]='icon2'>
+                <agm-info-window #infowindow>
+                    <div id="content" class="form-group col-md-12 row">
+                        <div class="col-md-12">
+                            <a routerLink="/detail/{{location.Name}}" routerLinkActive="active" tabindex="0">
+                                <h1 id="firstHeading" class="firstHeading">{{ location.Name }}</h1>
+                            </a>
+                        </div><br>
+                        <div id="bodyContent" class="col-md-6">
+                            <p></p>
+                            <h6>{{ location.Name }}</h6><br>ที่อยู่ : {{ location.Address }} {{location.Province}}<br>ระดับ: {{ location.Status }}
+                            <br>หมวดหมู่: {{ location.Category }}
+                            <p></p>
+                        </div>
+                        <div id="bodyContent" class="col-md-4">
+                            <center><img src="http://localhost:3000/images/{{location.Picture_1}} " alt="รูปประกอบ" height="230" width="300"></center>
+                        </div>
+                    </div>
+                </agm-info-window>
+            </agm-marker>
+        </div>
+    </div>
+</agm-map>
