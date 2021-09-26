@@ -65,6 +65,7 @@ exports.login = async(req, res, next) => {
     const password = req.body.password;
     try {
         const user = await User.find(username);
+        // console.log("user", user);
 
         if (user[0].length !== 1) {
             const error = new Error('A user with this username could not be found.');
@@ -73,20 +74,24 @@ exports.login = async(req, res, next) => {
         }
 
         const storedUser = user[0][0];
+        // console.log("storedUser", storedUser);
         const isEqual = await bcrypt.compare(password, storedUser.password);
+        // console.log("isEqual", isEqual);
 
         if (!isEqual) {
             const error = new Error('Wrong password!');
             error.statusCode = 401;
             throw error;
         }
-
+        // const passtoken = jwt.sign({ password: storedUser.password }, 'secretkey', { expiresIn: '1h' });
+        // console.log("passtoken", passtoken);
         const token = jwt.sign({
                 username: storedUser.username,
                 userId: storedUser.id,
             },
             'secretfortoken', { expiresIn: '1h' }
         );
+        // console.log("token", token);
         const check = await User.checkRole(storedUser.id, username);
         // console.log('check', check);
 

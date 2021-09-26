@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
       // console.log(this.authService.isUserLoggedIn$.value);
       // console.log('roles',this.authService.roles);
       // console.log("access denied");
-      this.router.navigate(["/"]);
+      this.router.navigate(["/map"]);
     }
     else {
       // console.log(this.authService.isUserLoggedIn$.value);

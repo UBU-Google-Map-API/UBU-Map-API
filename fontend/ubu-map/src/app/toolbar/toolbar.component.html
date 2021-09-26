@@ -68,10 +68,12 @@
         <button mat-button routerLinkActive="active-link" routerLink="/login">
             <mat-icon>login</mat-icon> เข้าสู่ระบบ</button>
     </div>
-
     <div *ngIf="isAuthenticated && isRole == 'super-admin'">
-        <a mat-raised-button color="accent" (click)="linkAdmin()">แก้ไขข้อมูล</a>
+        <a mat-raised-button color="accent" (click)="openDialog()">แสดงแถบป้าย</a>
     </div>
+    <!-- <div *ngIf="isAuthenticated && isRole == 'super-admin'">
+        <a mat-raised-button color="accent" (click)="linkAdmin()">แก้ไขข้อมูล</a>
+    </div> -->
 
     <div *ngIf="isAuthenticated">
         <h5 class="container">{{username}}</h5>
@@ -79,6 +81,9 @@
 
     <button mat-icon-button aria-label="Example icon button with a menu icon" [matMenuTriggerFor]="animals"><mat-icon>menu</mat-icon></button>
     <mat-menu #animals="matMenu">
+        <div *ngIf="isAuthenticated && isRole == 'super-admin'">
+            <a mat-menu-item color="accent" (click)="linkAdmin()">แก้ไขข้อมูล</a>
+        </div>
         <div *ngFor="let option of options">
             <div *ngIf="option == 'หน้าแรก'">
                 <button (click)="home()" mat-menu-item>หน้าแรก</button>
@@ -90,6 +95,7 @@
                 <button (click)="onClick(option)" mat-menu-item>องค์กรปกครองส่วนท้องถิ่น</button>
             </div>
         </div>
+
         <button mat-menu-item [matMenuTriggerFor]="invertebrates">จังหวัด</button>
         <button *ngIf="isAuthenticated" mat-menu-item routerLinkActive="active-link" (click)="logout()"><mat-icon>logout</mat-icon> Logout</button>
     </mat-menu>

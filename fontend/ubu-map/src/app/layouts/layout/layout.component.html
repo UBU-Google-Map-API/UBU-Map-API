@@ -1,5 +1,5 @@
 <app-toolbar></app-toolbar>
-<div class="container">
+<!-- <div class="container">
     <div class="container-fluid">
         <div class="row">
             <div class="center" *ngFor="let detail of details">
@@ -9,7 +9,7 @@
                     <div class="col-md-7">
                         <owl-carousel [options]="homeSlider" [carouselClasses]="['owl-theme','customClassName']">
                             <div class="item" *ngFor="let image of imageName">
-                                <img src="http://202.28.49.95:3000/images/{{image}}" alt="{{image}}" style="width: 650px; height: 400px ;">
+                                <img src="http://localhost:3000/images/{{image}}" alt="{{image}}" style="width: 650px; height: 400px ;">
                             </div>
                         </owl-carousel>
                     </div>
@@ -17,13 +17,9 @@
                         <p class="my-3"><b>พืชศึกษา :</b>{{detail.Study_Plants}}</p>
                         <p class="my-3"><b>ที่อยู่ :</b>{{detail.Address}}</p>
                         <p class="my-3"><b>จังหวัด :</b> {{detail.Province}}</p>
-                        <!-- <p class="my-3"><b>ระดับ :</b>{{detail.Status}}</p> -->
                         <p *ngIf="detail.Status === 'ก.1'" class="my-3"><b>ระดับ :</b>เกียรติบัตรขั้นที่ 1</p>
                         <p *ngIf="detail.Status === 'ก.2'" class="my-3"><b>ระดับ :</b>เกียรติบัตรขั้นที่ 2</p>
                         <p *ngIf="detail.Status === 'ป้ายพระราชทาน'" class="my-3"><b>ระดับ :</b>ป้ายพระราชทาน</p>
-                        <!-- <p *ngIf="detail.Status === 'ก.1'">เกียรติบัตรขั้นที่ 1</p>
-                        <p *ngIf="detail.Status === 'ก.2'">เกียรติบัตรขั้นที่ 2</p>
-                        <p *ngIf="detail.Status === 'ป้ายพระราชทาน'">ป้ายพระราชทาน</p> -->
 
                         <div *ngIf="detail.Status === 'ก.1' ">
                             <p class="my-3" *ngIf="detail.date2 == 'NaN undefined NaN'  "><b>วันที่ได้รับเกียรติบัตรขั้นที่ 1 : </b></p>
@@ -47,7 +43,64 @@
 
                         <br>
                         <div *ngIf="detail.Vdo === null || detail.Vdo == ''">
-                            <!-- <button mat-raised-button color="primary">วีดีโอ</button> -->
+                        </div>
+
+                        <div *ngIf="detail.Vdo != '' && detail.Vdo != null">
+                            <a mat-raised-button href="{{detail.Vdo}}" target="_blank" color="primary">วีดีโอ<i class="fas fa-video"></i></a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="fullscreen-block">
+    <div class="container container-fluid">
+        <div class="row">
+            <div class="center" *ngFor="let detail of details">
+                <h1>{{detail.name}}</h1>
+                <hr>
+                <div class="row">
+                    <div class="col-md-7">
+                        <owl-carousel [options]="homeSlider" [carouselClasses]="['owl-theme','customClassName']">
+                            <div class="item" *ngFor="let image of imageName">
+                                <img src="http://202.28.49.95:3000/images/{{image}}" alt="{{image}}" style="width:100%; height: 400px ;">
+                            </div>
+                        </owl-carousel>
+                    </div>
+                    <div class="col-md-5">
+                        <p class="my-3"><b>พืชศึกษา :</b>{{detail.Study_Plants}}</p>
+                        <p class="my-3"><b>ที่อยู่ :</b>{{detail.Address}}</p>
+                        <p class="my-3"><b>จังหวัด :</b> {{detail.Province}}</p>
+                        <p *ngIf="detail.Status === 'ก.1'" class="my-3"><b>ระดับ :</b>เกียรติบัตรขั้นที่ 1</p>
+                        <p *ngIf="detail.Status === 'ก.2'" class="my-3"><b>ระดับ :</b>เกียรติบัตรขั้นที่ 2</p>
+                        <p *ngIf="detail.Status === 'ป้ายพระราชทาน'" class="my-3"><b>ระดับ :</b>ป้ายพระราชทาน</p>
+
+                        <div *ngIf="detail.Status === 'ก.1' ">
+                            <p class="my-3" *ngIf="detail.date2 == 'NaN undefined NaN'  "><b>วันที่ได้รับเกียรติบัตรขั้นที่ 1 : </b></p>
+                            <p class="my-3" *ngIf="detail.date2 != 'NaN undefined NaN' "><b>วันที่ได้รับเกียรติบัตรขั้นที่ 1 : </b>{{detail.date2}}</p>
+                        </div>
+                        <div *ngIf="detail.Status === 'ก.2' ">
+                            <p class="my-3" *ngIf="detail.date3 == 'NaN undefined NaN'"><b>วันที่ได้รับเกียรติบัตรขั้นที่ 2 : </b></p>
+                            <p class="my-3" *ngIf="detail.date3 != 'NaN undefined NaN'"><b>วันที่ได้รับเกียรติบัตรขั้นที่ 2 : </b>{{detail.date3}}</p>
+                        </div>
+                        <div *ngIf="detail.Status === 'ป้ายพระราชทาน' ">
+                            <p class="my-3" *ngIf="detail.date1 == 'NaN undefined NaN'"><b>วันที่ได้รับป้ายพระราชทาน : </b></p>
+                            <p class="my-3" *ngIf="detail.date1 != 'NaN undefined NaN'"><b>วันที่ได้รับป้ายพระราชทาน : </b>{{detail.date1}}</p>
+                        </div>
+
+                        <div *ngIf="detail.School_Web === null || detail.School_Web == ''">
+                        </div>
+
+                        <div *ngIf="detail.School_Web != '' && detail.School_Web != null">
+                            <a mat-raised-button href="{{detail.School_Web}}" target="_blank" color="accent">เว็บไซต์โรงเรียน</a>
+                        </div>
+
+                        <br>
+                        <div *ngIf="detail.Vdo === null || detail.Vdo == ''">
                         </div>
 
                         <div *ngIf="detail.Vdo != '' && detail.Vdo != null">

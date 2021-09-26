@@ -81,7 +81,8 @@ module.exports = class User {
     }
 
     static UpdateUser(id, User) {
-        return db.execute('UPDATE `users` SET `name`=?, `username`=? WHERE id =?', [User.name, User.username, id]);
+        // console.log(User);
+        return db.execute('UPDATE `users` SET `name`=?, `username`=? ,`password`=? WHERE id =?', [User.name, User.username, User.password, id]);
     }
 
     static DeleteUser(id) {

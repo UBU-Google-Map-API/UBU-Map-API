@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { AuthService } from 'src/app/services/auth.service';
-
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import * as _moment from 'moment';
 const moment = _moment;
@@ -253,8 +253,18 @@ export class HomeComponent implements OnInit {
     this.uploadService.uploadMultiFile(formData).subscribe((res) => {
       // console.log(res);
     })
-
-    this.router.navigate(["/map"]);
+    Swal.fire({
+      title: 'สำเสร็จ',
+      text: 'เพิ่มข้อมูลผู้ใช้งานสำเสร็จ',
+      icon: 'success',
+      showCancelButton: true,
+      // cancelButtonText: 'ปิด'
+    }).then((result) => {
+      if (result.value) {
+        this.router.navigate(["/map"]);
+      }
+    });
+    // this.router.navigate(["/"]);
 
   }
   selectImage(event) {
@@ -294,7 +304,7 @@ export class HomeComponent implements OnInit {
         this.multipleImages.push(newFile);
       }
     }
-    console.log(this.multipleImages);
+    // console.log(this.multipleImages);
 
     for (let name of this.multipleImages) {
       this.ImageName.push(name.name);
@@ -372,12 +382,12 @@ export class HomeComponent implements OnInit {
     }
 
 
-    console.log(this.multipleImages);
-    console.log('formData',formData);
+    // console.log(this.multipleImages);
+    // console.log('formData',formData);
 
 
     this.uploadService.uploadMultiFile(formData).subscribe((res) => {
-      console.log(res);
+      // console.log(res);
     })
   }
 

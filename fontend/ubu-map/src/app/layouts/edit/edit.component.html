@@ -117,7 +117,10 @@
                                 <mat-label>ระดับ</mat-label>
                                 <mat-select formControlName="Status" required>
                                     <mat-option *ngFor="let s of Statu" [value]="s">
-                                        {{s}}
+                                        <p *ngIf="s =='ก.1'">เกียรติบัตรขั้นที่ 1</p>
+                                        <p *ngIf="s =='ก.2'">เกียรติบัตรขั้นที่ 2</p>
+                                        <p *ngIf="s =='ป้ายพระราชทาน'">ป้ายพระราชทาน</p>
+                                        <!-- {{s}} -->
                                     </mat-option>
                                 </mat-select>
                                 <mat-hint>*จำเป็น</mat-hint>
@@ -206,7 +209,7 @@
                                 </td>
                                 <td>
                                     <div *ngIf="i == 'NoImageFound.png' || i == null "></div>
-                                    <div *ngIf="i != 'NoImageFound.png' || i != null">
+                                    <div *ngIf="i != 'NoImageFound.png' || i != null ">
                                         <button mat-raised-button color="warn" (click)='DeleteIMG(i)'><span class="material-icons">delete</span>Delete</button>
                                     </div>
                                 </td>

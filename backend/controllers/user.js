@@ -1,5 +1,6 @@
 const { validationResult } = require('express-validator');
-
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
 exports.UserAll = async(req, res, next) => {
@@ -35,11 +36,15 @@ exports.UpdateUser = async(req, res, next) => {
     const password = req.body.password;
 
     try {
+        const hashedPassword = await bcrypt.hash(password, 12);
+        // console.log("hashedPassword", hashedPassword);
+        // console.log("password", password);
         const USER = {
             name: name,
             username: username,
-            password: password,
+            password: hashedPassword,
         };
+
         const data = await User.UpdateUser(id, USER);
         res.status(200).json({ message: 'User Updated' });
     } catch (err) {

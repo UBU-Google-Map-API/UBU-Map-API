@@ -86,8 +86,8 @@ export class EditComponent implements OnInit {
     })
 
 
-    this.postService.getPostData(this.userName).subscribe((res: any) => {
-      console.log(res[0]);
+    this.postService.getPostData(this.userName).subscribe((res: any) => {      
+      // console.log(res[0]);
       this.profileForm = new FormGroup({
         Id: new FormControl(res[0].Id),
         Name: new FormControl(res[0].name),
@@ -126,8 +126,13 @@ export class EditComponent implements OnInit {
       this.ViewImage.push(res[0].Picture_9);
       this.ViewImage.push(res[0].Picture_10);
       for (let i = 0; i < this.ViewImage.length; i++) {
+        // console.log(i);
+        
         if (this.ViewImage[i] == 'NoImageFound.png') {
           this.ViewImage.splice(i);
+        }
+        if(this.ViewImage[i] == null) {
+          this.ViewImage.splice(i);         
         }
       }
       // console.log(this.ViewImage);
@@ -146,8 +151,20 @@ export class EditComponent implements OnInit {
   UpdateUser() {
     this.userService.updateUser(this.userID, this.signupForm.value).subscribe(res => {
       // console.log(res);
-    })
+    });
 
+    // this.location.back();
+    Swal.fire({
+      title: 'สำเสร็จ',
+      text: 'อัปเดตข้อมูลผู้ใช้งานสำเสร็จ',
+      icon: 'success',
+      showCancelButton: true,
+      // cancelButtonText: 'ปิด'
+    }).then((result) => {
+      if (result.value) {
+        this.location.back();
+      }
+    });
   }
 
   updatePost() {
@@ -156,6 +173,7 @@ export class EditComponent implements OnInit {
     this.postService.updatePost(this.userName, this.profileForm.value).subscribe(res => {
       // console.log(res);
     });
+
   }
 
   back(): void {
@@ -173,9 +191,9 @@ export class EditComponent implements OnInit {
     // }
     if (event.target.files.length > 0) {
       const num = event.target.files.length;
-      
+
       for (let i = 1; i <= num; i++) {
-        let fileToUpload = <File>event.target.files[i-1];
+        let fileToUpload = <File>event.target.files[i - 1];
         let fileName: string = this.profileForm.value.Name + '-' + 'Picture_' + i;
         let fileExtension: string = fileToUpload.name.split('.').pop();
         const newFile: File = new File([fileToUpload], fileName + '.' + fileExtension, { type: fileExtension });
@@ -198,7 +216,7 @@ export class EditComponent implements OnInit {
     for (let i = 0; i < contImage; i++) {
       this.profileForm.controls['image' + i].setValue(this.ImageName[i]);
     }
-    
+
     const formData = new FormData();
     for (let img of this.multipleImages) {
       formData.append('files', img);
@@ -216,26 +234,26 @@ export class EditComponent implements OnInit {
     }
 
     // console.log(this.profileForm.value);
-    if(this.profileForm.get('image0').value == null){this.profileForm.controls['image0'].setValue('NoImageFound.png');}
-    if(this.profileForm.get('image1').value == null){this.profileForm.controls['image1'].setValue('NoImageFound.png');}
-    if(this.profileForm.get('image2').value == null){this.profileForm.controls['image2'].setValue('NoImageFound.png');}
-    if(this.profileForm.get('image3').value == null){this.profileForm.controls['image3'].setValue('NoImageFound.png');}
-    if(this.profileForm.get('image4').value == null){this.profileForm.controls['image4'].setValue('NoImageFound.png');}
-    if(this.profileForm.get('image5').value == null){this.profileForm.controls['image5'].setValue('NoImageFound.png');}
-    if(this.profileForm.get('image6').value == null){this.profileForm.controls['image6'].setValue('NoImageFound.png');}
-    if(this.profileForm.get('image7').value == null){this.profileForm.controls['image7'].setValue('NoImageFound.png');}
-    if(this.profileForm.get('image8').value == null){this.profileForm.controls['image8'].setValue('NoImageFound.png');}
-    if(this.profileForm.get('image9').value == null){this.profileForm.controls['image9'].setValue('NoImageFound.png');}
-    
+    if (this.profileForm.get('image0').value == null) { this.profileForm.controls['image0'].setValue('NoImageFound.png'); }
+    if (this.profileForm.get('image1').value == null) { this.profileForm.controls['image1'].setValue('NoImageFound.png'); }
+    if (this.profileForm.get('image2').value == null) { this.profileForm.controls['image2'].setValue('NoImageFound.png'); }
+    if (this.profileForm.get('image3').value == null) { this.profileForm.controls['image3'].setValue('NoImageFound.png'); }
+    if (this.profileForm.get('image4').value == null) { this.profileForm.controls['image4'].setValue('NoImageFound.png'); }
+    if (this.profileForm.get('image5').value == null) { this.profileForm.controls['image5'].setValue('NoImageFound.png'); }
+    if (this.profileForm.get('image6').value == null) { this.profileForm.controls['image6'].setValue('NoImageFound.png'); }
+    if (this.profileForm.get('image7').value == null) { this.profileForm.controls['image7'].setValue('NoImageFound.png'); }
+    if (this.profileForm.get('image8').value == null) { this.profileForm.controls['image8'].setValue('NoImageFound.png'); }
+    if (this.profileForm.get('image9').value == null) { this.profileForm.controls['image9'].setValue('NoImageFound.png'); }
+
 
     this.postService.updatePost(this.userName, this.profileForm.value).subscribe(res => {
       // console.log(res);
     });
 
-
     this.fileUploadService.uploadMultiFile(formData).subscribe((res) => {
       // console.log(res);
     })
+    this.location.back();
 
     // this.router.navigate(["/"]);
   }
@@ -254,12 +272,12 @@ export class EditComponent implements OnInit {
         this.ViewImage.splice(index, 1);
         this.allfiles.splice(index, 1);
         this.fileUploadService.deleteFile(name).subscribe((res: any) => { });
-
         Swal.fire(
           'ลบรูปภาพ!',
           'รูปภาพถูกลบออก',
           'success'
         )
+        // this.location.back();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
           'ยกเลิก',
