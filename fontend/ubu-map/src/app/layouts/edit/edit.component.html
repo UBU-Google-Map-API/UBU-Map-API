@@ -10,7 +10,7 @@
                     <hr>
 
                     <mat-card-content class="font">
-                        <a href="https://www.youtube.com/watch?v=Qv_J7MS4PTM&ab_channel=AthipSirisawetkunwong" target="_blank">User</a>
+                        <a href="https://www.youtube.com/watch?v=Qv_J7MS4PTM&ab_channel=AthipSirisawetkunwong" target="_blank">ผู้ใช้งาน</a>
                         <br>
                         <a href="https://www.youtube.com/watch?v=Qv_J7MS4PTM&ab_channel=AthipSirisawetkunwong" target="_blank">คู่มือการใช้งานสำหรับ Admin</a>
                     </mat-card-content>
@@ -27,15 +27,15 @@
                     <mat-card-content>
                         <form [formGroup]="signupForm" (ngSubmit)="UpdateUser()" novalidate>
                             <mat-form-field appearance="outline" class="input-custom" class="full">
-                                <mat-label>Name</mat-label>
+                                <mat-label>ชื่อ</mat-label>
                                 <input matInput placeholder="Name" formControlName="name" />
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="input-custom" class="full">
-                                <mat-label>username</mat-label>
+                                <mat-label>ชื่อผู้ใช้</mat-label>
                                 <input matInput placeholder="UserName" formControlName="username" />
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="input-custom" class="full">
-                                <mat-label>Password</mat-label>
+                                <mat-label>รหัสผ่าน</mat-label>
                                 <input matInput type="password" placeholder="Password" formControlName="password" />
                             </mat-form-field>
                             <!-- <mat-form-field appearance="outline" class="input-custom" class="full">
@@ -47,8 +47,8 @@
                                 </mat-select>
                             </mat-form-field> -->
                             <div fxLayout="row" fxLayoutAlign="space-between none">
-                                <button mat-raised-button color="primary" (click)='back()'><span class="material-icons">arrow_back</span>Back</button>
-                                <button mat-raised-button color="primary" [disabled]="!signupForm.valid" type="submit"><span>Update</span></button>
+                                <button mat-raised-button color="primary" (click)='back()'><span class="material-icons">arrow_back</span>ย้อนกลับ</button>
+                                <button mat-raised-button color="primary" [disabled]="!signupForm.valid" type="submit"><span>อัปเดต</span></button>
                             </div>
                         </form>
                     </mat-card-content>
@@ -61,25 +61,36 @@
                     </mat-card-header>
                     <hr>
                     <mat-card-content>
-                        <form class="example-form" [formGroup]="profileForm" (ngSubmit)="updatePost()">
+                        <form class="example-form" [formGroup]="profileForm" (ngSubmit)="onSubmitForm()">
 
                             <mat-form-field appearance="outline" class="input-custom">
                                 <mat-label>รหัสโรงเรียน</mat-label>
                                 <input matInput type="text" formControlName="Id" placeholder="รหัสโรงเรียน">
-                                <mat-hint>*Required</mat-hint>
+                                <mat-hint>*จำเป็น</mat-hint>
+                                <mat-error>*โปรดระบุ รหัสโรงเรียน</mat-error>
                             </mat-form-field>
 
                             <mat-form-field appearance="outline" class="input-custom">
                                 <mat-label>ชื่อ</mat-label>
                                 <input matInput type="text" formControlName="Name" placeholder="ชื่อ">
-                                <mat-hint>*Required</mat-hint>
+                                <mat-hint>*จำเป็น</mat-hint>
+                                <mat-error>*โปรดระบุ ชื่อโรงเรียน</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="input-custom">
+                                <mat-label>พืชศึกษา</mat-label>
+                                <input matInput type="text" formControlName="Study_Plants" placeholder="พืชศึกษา">
+                                <mat-hint>*จำเป็น</mat-hint>
+                                <mat-error>*โปรดระบุ พืชศึกษา</mat-error>
                             </mat-form-field>
 
                             <mat-form-field appearance="outline" class="input-custom">
                                 <mat-label>ที่อยู่</mat-label>
-                                <input matInput type="text" formControlName="Address" placeholder="ตำบล... อำเภอ... จังหวัด..... 99999">
-                                <mat-hint>*Required</mat-hint>
+                                <input matInput type="text" formControlName="Address" placeholder="ตำบล... อำเภอ... จังหวัด.....">
+                                <mat-hint>*จำเป็น</mat-hint>
+                                <mat-error>*โปรดระบุ ที่อยู่</mat-error>
                             </mat-form-field>
+
                             <mat-form-field appearance="outline" class="input-custom">
                                 <mat-label>หมวดหมู่</mat-label>
                                 <mat-select formControlName="Category" required>
@@ -87,7 +98,8 @@
                                         {{category}}
                                     </mat-option>
                                 </mat-select>
-                                <mat-hint>*Required</mat-hint>
+                                <mat-hint>*จำเป็น</mat-hint>
+                                <mat-error>*โปรดระบุ หมวดหมู่</mat-error>
                             </mat-form-field>
 
                             <mat-form-field appearance="outline" class="input-custom">
@@ -97,7 +109,8 @@
                                         {{p.Province}}
                                     </mat-option>
                                 </mat-select>
-                                <mat-hint>*Required</mat-hint>
+                                <mat-hint>*จำเป็น</mat-hint>
+                                <mat-error>*โปรดระบุ จังหวัด</mat-error>
                             </mat-form-field>
 
                             <mat-form-field appearance="outline" class="input-custom">
@@ -107,35 +120,35 @@
                                         {{s}}
                                     </mat-option>
                                 </mat-select>
-                                <mat-hint>*Required</mat-hint>
+                                <mat-hint>*จำเป็น</mat-hint>
+                                <mat-error>*โปรดระบุ ระดับ</mat-error>
                             </mat-form-field>
-                            <div>
 
-                                <mat-form-field appearance="outline" class="col-md-4">
-                                    <mat-label>วันที่ได้รับป้ายพระราชทาน</mat-label>
-                                    <input matInput [matDatepicker]="dp" formControlName="Register_date">
-                                    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-                                    <mat-datepicker #dp></mat-datepicker>
-                                    <mat-error>*โปรดระบุวันที่ได้รับป้ายพระราชทาน โดยเลือกวัน เดือน และปี ค.ศ.</mat-error>
-                                </mat-form-field>
+                            <mat-form-field *ngIf="profileForm.value.Status == 'ป้ายพระราชทาน'" appearance="outline" class="col-md-4">
+                                <mat-label>วันที่ได้รับป้ายพระราชทาน</mat-label>
+                                <input matInput [matDatepicker]="dp" datePickerFormat="DD/MM/YYYY" formControlName="Register_date">
+                                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                                <mat-datepicker #dp></mat-datepicker>
+                                <mat-error>*โปรดระบุวันที่ได้รับป้ายพระราชทาน โดยเลือกวัน เดือน และปี ค.ศ.</mat-error>
+                            </mat-form-field>
 
-                                <mat-form-field appearance="outline" class="col-md-4">
-                                    <mat-label>วันที่ได้รับเกียรติบัตรขั้นที่ 1</mat-label>
-                                    <input matInput [matDatepicker]="dp2" formControlName="Certificate_date1">
-                                    <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
-                                    <mat-datepicker #dp2></mat-datepicker>
-                                    <mat-error>*โปรดระบุวันที่ได้รับเกียรติบัตรขั้นที่ 1 โดยเลือกวัน เดือน และปี ค.ศ.</mat-error>
-                                </mat-form-field>
+                            <mat-form-field *ngIf="profileForm.value.Status == 'ก.1'" appearance="outline" class="col-md-4">
+                                <mat-label>วันที่ได้รับเกียรติบัตรขั้นที่ 1</mat-label>
+                                <input matInput [matDatepicker]="dp2" datePickerFormat="DD/MM/YYYY" formControlName="Certificate_date1">
+                                <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                                <mat-datepicker #dp2></mat-datepicker>
+                                <mat-error>*โปรดระบุวันที่ได้รับเกียรติบัตรขั้นที่ 1 โดยเลือกวัน เดือน และปี ค.ศ.</mat-error>
+                            </mat-form-field>
 
-                                <mat-form-field appearance="outline" class="col-md-4">
-                                    <mat-label>วันที่ได้รับเกียรติบัตรขั้นที่ 2</mat-label>
-                                    <input matInput [matDatepicker]="dp3" formControlName="Certificate_date2">
-                                    <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-                                    <mat-datepicker #dp3></mat-datepicker>
-                                    <mat-error>*โปรดระบุวันที่ได้รับเกียรติบัตรขั้นที่ 2 โดยเลือกวัน เดือน และปี ค.ศ.</mat-error>
-                                </mat-form-field>
-                            </div>
+                            <mat-form-field *ngIf="profileForm.value.Status == 'ก.2'" appearance="outline" class="col-md-4">
+                                <mat-label>วันที่ได้รับเกียรติบัตรขั้นที่ 2</mat-label>
+                                <input matInput [matDatepicker]="dp3" datePickerFormat="DD/MM/YYYY" formControlName="Certificate_date2">
+                                <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                                <mat-datepicker #dp3></mat-datepicker>
+                                <mat-error>*โปรดระบุวันที่ได้รับเกียรติบัตรขั้นที่ 2 โดยเลือกวัน เดือน และปี ค.ศ.</mat-error>
+                            </mat-form-field>
 
+                            <br>
                             <a href="https://www.youtube.com/watch?v=_moh_pi13ag">วิธีเพิ่ม URL video จากเว็บไซต์ Youtube</a>
                             <mat-form-field appearance="outline" class="input-custom">
                                 <mat-label>URL วีดีโอ</mat-label>
@@ -143,16 +156,25 @@
                             </mat-form-field>
 
                             <a href="https://www.youtube.com/watch?time_continue=322&amp;v=C1qT0TslTNo&amp;feature=emb_title">หาค่า Latitude(ละติจูด),Latitude(ละติจูด) </a>
-
                             <mat-form-field appearance="outline" class="input-custom">
                                 <mat-label>ละติจูด</mat-label>
                                 <input matInput type="text" formControlName="Latitude" placeholder="ละติจูด">
+                                <mat-error>*โปรดระบุ ละติจูด</mat-error>
                             </mat-form-field>
 
                             <mat-form-field appearance="outline" class="input-custom">
                                 <mat-label>ลองจิจูด</mat-label>
                                 <input matInput type="text" formControlName="Longitude" placeholder="ลองจิจูด">
+                                <mat-error>*โปรดระบุ ลองจิจูด</mat-error>
                             </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="input-custom">
+                                <mat-label>เว็บไซต์โรงเรียน</mat-label>
+                                <input matInput type="text" formControlName="School_Web" placeholder="เว็บไซต์โรงเรียน">
+                                <mat-hint>*Required</mat-hint>
+                                <!-- <mat-error>*โปรดระบุ เว็บไซต์โรงเรียน</mat-error> -->
+                            </mat-form-field>
+
                             <div>อัพโหลดรูปภาพ
                                 <p style="color: red;">*โปรดเลือกรูปภาพอย่างน้อย 1 รูป ขนาดไม่เกิน 5 MB โดยมีสกุลไฟล์ jpeg,png,jpg,gif,svg เท่านั้น</p>
                             </div>
@@ -160,10 +182,37 @@
                                 <input type="file" name="image" multiple (change)="selectMultipleImages($event)" />
                             </div>
                             <br>
-
                             <button mat-raised-button color="primary" type="submit" [disabled]="profileForm.invalid">บันทึก</button>
                         </form>
                     </mat-card-content>
+                </mat-card>
+                <mat-card>
+                    <table class="table" style="text-align: center;">
+                        <tbody>
+                            <th>รูป</th>
+                            <th>ชื่อ</th>
+                            <th>ลบ</th>
+                        </tbody>
+                        <tbody>
+                            <tr *ngFor="let i of ViewImage">
+                                <th>
+                                    <div *ngIf="i == 'NoImageFound.png' || i == null "></div>
+                                    <div *ngIf="i != 'NoImageFound.png' || i == null"><img src="http://localhost:3000/images/{{i}} " height="70px" width="90px"></div>
+
+                                </th>
+                                <td>
+                                    <div *ngIf="i == 'NoImageFound.png' || i == null "></div>
+                                    <div *ngIf="i != 'NoImageFound.png' || i == null">{{i}}</div>
+                                </td>
+                                <td>
+                                    <div *ngIf="i == 'NoImageFound.png' || i == null "></div>
+                                    <div *ngIf="i != 'NoImageFound.png' ">
+                                        <button mat-raised-button color="warn" (click)='DeleteIMG(i)'><span class="material-icons">delete</span>Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </mat-card>
             </div>
         </div>

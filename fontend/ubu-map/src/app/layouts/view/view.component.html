@@ -10,7 +10,7 @@
                     <hr>
 
                     <mat-card-content class="font">
-                        <a href="https://www.youtube.com/watch?v=Qv_J7MS4PTM&ab_channel=AthipSirisawetkunwong" target="_blank">User</a>
+                        <a href="https://www.youtube.com/watch?v=Qv_J7MS4PTM&ab_channel=AthipSirisawetkunwong" target="_blank">ผู้ใช้งาน</a>
                         <br>
                         <a href="https://www.youtube.com/watch?v=Qv_J7MS4PTM&ab_channel=AthipSirisawetkunwong" target="_blank">คู่มือการใช้งานสำหรับ Admin</a>
                     </mat-card-content>
@@ -20,13 +20,13 @@
             <div class="col-md-9">
                 <mat-card *ngFor="let user of userData">
                     <mat-card-header>
-                        <mat-card-title>User: {{user.username}}</mat-card-title>
+                        <mat-card-title>ผู้ใช้งาน: {{user.username}}</mat-card-title>
                     </mat-card-header>
                     <hr>
                     <div class="example-button-row">
-                        <button mat-raised-button color="primary" (click)='back()'><span class="material-icons">arrow_back</span>Back</button>
-                        <button mat-raised-button color="accent" (click)='Edit(user.name)'><span class="material-icons">edit</span>Edit</button>
-                        <button mat-raised-button color="warn" (click)='Delete(userID)'> <span class="material-icons">delete</span>Delete</button>
+                        <button mat-raised-button color="primary" (click)='back()'><span class="material-icons">arrow_back</span>ย้อนกลับ</button>
+                        <button mat-raised-button color="accent" (click)='Edit(user.name)'><span class="material-icons">edit</span>แก้ไข</button>
+                        <button mat-raised-button color="warn" (click)='Delete(userID)'> <span class="material-icons">delete</span>ลบ</button>
                     </div>
                     <br>
                     <mat-card-content>
@@ -37,11 +37,11 @@
                                     <td>{{user.id}}</td>
                                 </tr>
                                 <tr>
-                                    <th>Username</th>
+                                    <th>ผู้ใช้งาน</th>
                                     <td>{{user.username}}</td>
                                 </tr>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>ชื่อ</th>
                                     <td>{{user.name}}</td>
                                 </tr>
                             </tbody>

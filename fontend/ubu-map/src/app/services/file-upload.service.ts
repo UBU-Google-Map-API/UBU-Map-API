@@ -12,7 +12,8 @@ import { Observable } from 'rxjs';
 
 export class FileUploadService {
 
-  private urlfle = "http://localhost:3000";
+  // private urlfle = "http://localhost:3000";
+  private urlfle = "http://202.28.49.95:3000";
 
   httpOptions: { headers: HttpHeaders } = {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),
@@ -34,6 +35,10 @@ export class FileUploadService {
 
   public getFile(Name) {
     return this.http.get(`${this.urlfle}/file/getImage/${Name}`);
+  }
+
+  public deleteFile(name) {
+    return this.http.delete(`${this.urlfle}/file/deleteImage/${name}`);
   }
   
 

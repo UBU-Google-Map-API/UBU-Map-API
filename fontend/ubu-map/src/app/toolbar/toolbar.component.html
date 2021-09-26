@@ -56,7 +56,7 @@
 
 <mat-toolbar class="toolbar-color">
     <img style='margin-right: 10px;' src="./assets/logo/logo2.png" width="35" height="35" alt="no image">
-    <span class="valign-center" mat-icon-button routerLink="">
+    <span class="valign-center" mat-icon-button routerLink="/map">
         <div style="font-size: 1rem; text-align: right;">แผนที่แสดงตำแหน่งหน่วยงานร่วมสนองพระราชดำริโครงการอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริฯ</div>
     </span>
     <img src="./assets/logo/Logoubu.gif" width="35" height="35" alt="no image">
@@ -65,8 +65,8 @@
 
     <div *ngIf="!isAuthenticated">
         <a mat-raised-button color="accent" (click)="openDialog()">แสดงแถบป้าย</a>
-        <button mat-button routerLinkActive="active-link" routerLink="login">
-            <mat-icon>login</mat-icon> Login</button>
+        <button mat-button routerLinkActive="active-link" routerLink="/login">
+            <mat-icon>login</mat-icon> เข้าสู่ระบบ</button>
     </div>
 
     <div *ngIf="isAuthenticated && isRole == 'super-admin'">

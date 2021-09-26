@@ -25,17 +25,14 @@ export class HomeComponent implements OnInit {
   public formGroup = this.fb.group({
     file: [null, Validators.required]
   });
-
-  // private fileName
-  // images/107856190_3073699929411585_8638358709965849897_n.jpg;
-  // url = 'http://localhost:3000/' + 'images/' + 'image.png';
-
   profileForm = this.fb.group({
     Id: [null, Validators.required],
     Name: [null, Validators.required],
     Address: [null, Validators.required],
     Province: [null, Validators.required],
+    Study_Plants: [null, Validators.required],
     Status: [null, Validators.required],
+    School_Web: [null],
     Register_date: [null,],
     Certificate_date1: [null,],
     Certificate_date2: [null,],
@@ -55,12 +52,11 @@ export class HomeComponent implements OnInit {
     image9: ['NoImageFound.png'],
   });
 
-  date = moment();
-
+  // date = moment();
   selDate: string;
   selMonth: string;
   selYear: string;
-  
+
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
@@ -80,21 +76,26 @@ export class HomeComponent implements OnInit {
   Provinces;
   Statu: any = ['ป้ายพระราชทาน', 'ก.1', 'ก.2'];
   Categorys: any = ['โรงเรียน', 'องค์การบริหารส่วนตําบล'];
+  ViewImage: any = [];
+  UserName = this.authService.userLogin.name;
 
   ngOnInit(): void {
+
     this.profileForm = new FormGroup({
-      Id: new FormControl(),
-      Name: new FormControl(this.authService.userLogin.name),
-      Address: new FormControl(),
-      Province: new FormControl(),
-      Status: new FormControl(),
-      Register_date: new FormControl(),
-      Certificate_date1: new FormControl(),
-      Certificate_date2: new FormControl(),
-      Category: new FormControl(),
+      Id: new FormControl(null, Validators.required),
+      Name: new FormControl(this.UserName),
+      Address: new FormControl(null, Validators.required),
+      Province: new FormControl(null, Validators.required),
+      Study_Plants: new FormControl(null, Validators.required),
+      Status: new FormControl(null, Validators.required),
+      School_Web: new FormControl(null),
+      Register_date: new FormControl(null),
+      Certificate_date1: new FormControl(null),
+      Certificate_date2: new FormControl(null),
+      Category: new FormControl(null, Validators.required),
       Vdo: new FormControl(),
-      Latitude: new FormControl(),
-      Longitude: new FormControl(),
+      Latitude: new FormControl(null, Validators.required),
+      Longitude: new FormControl(null, Validators.required),
       image0: new FormControl('NoImageFound.png'),
       image1: new FormControl('NoImageFound.png'),
       image2: new FormControl('NoImageFound.png'),
@@ -111,8 +112,56 @@ export class HomeComponent implements OnInit {
     this.mapService.getProvince().subscribe((res: any) => {
       // console.log(res);
       this.Provinces = res;
-    }
-    );
+    });
+
+    this.postService.getPostData(this.UserName).subscribe((res: any) => {
+      
+      
+      this.profileForm = new FormGroup({
+        Id: new FormControl(null, Validators.required),
+        Name: new FormControl(this.UserName),
+        Address: new FormControl(null, Validators.required),
+        Province: new FormControl(null, Validators.required),
+        Study_Plants: new FormControl(null, Validators.required),
+        Status: new FormControl(null, Validators.required),
+        School_Web: new FormControl(null),
+        Register_date: new FormControl(null),
+        Certificate_date1: new FormControl(null),
+        Certificate_date2: new FormControl(null),
+        Category: new FormControl(null, Validators.required),
+        Vdo: new FormControl(),
+        Latitude: new FormControl(null, Validators.required),
+        Longitude: new FormControl(null, Validators.required),
+        image0: new FormControl(res[0].Picture_1),
+        image1: new FormControl(res[0].Picture_2),
+        image2: new FormControl(res[0].Picture_3),
+        image3: new FormControl(res[0].Picture_4),
+        image4: new FormControl(res[0].Picture_5),
+        image5: new FormControl(res[0].Picture_6),
+        image6: new FormControl(res[0].Picture_7),
+        image7: new FormControl(res[0].Picture_8),
+        image8: new FormControl(res[0].Picture_9),
+        image9: new FormControl(res[0].Picture_1),
+      });
+
+      this.ViewImage.push(res[0].Picture_1);
+      this.ViewImage.push(res[0].Picture_2);
+      this.ViewImage.push(res[0].Picture_3);
+      this.ViewImage.push(res[0].Picture_4);
+      this.ViewImage.push(res[0].Picture_5);
+      this.ViewImage.push(res[0].Picture_6);
+      this.ViewImage.push(res[0].Picture_7);
+      this.ViewImage.push(res[0].Picture_8);
+      this.ViewImage.push(res[0].Picture_9);
+      this.ViewImage.push(res[0].Picture_10);
+
+      for (let i = 0; i < this.ViewImage.length; i++) {
+        if (this.ViewImage[i] == 'NoImageFound.png') {
+          this.ViewImage.splice(i);
+        }
+      }
+      // console.log(this.profileForm.value);
+    })
     // this.mapService.getStatus().subscribe((res:any)=>{
     //   this.Status = res;
     // });
@@ -124,10 +173,9 @@ export class HomeComponent implements OnInit {
   onSubmitForm() {
     const contImage = this.ImageName.length;
     for (let i = 0; i < contImage; i++) {
-      const name = this.profileForm.value.Name;
       this.profileForm.controls['image' + i].setValue(this.ImageName[i]);
     }
-
+    
     const formData = new FormData();
     for (let img of this.multipleImages) {
       formData.append('files', img);
@@ -172,34 +220,43 @@ export class HomeComponent implements OnInit {
 
     // -----------------------------------------------------------------------------------------------------------
 
-    console.log('ป้ายพระราชทาน', this.profileForm.value.Register_date);
-    console.log('ก1', this.profileForm.value.Certificate_date1);
-    console.log('ก2', this.profileForm.value.Certificate_date2);
+    let date1 = this.profileForm.get('Register_date').value;
+    let date2 = this.profileForm.get('Certificate_date1').value;
+    let date3 = this.profileForm.get('Certificate_date2').value;
 
+    if (date1 != null) {
+      this.profileForm.controls['Register_date'].setValue(moment(date1).format('YYYY-MM-DD'));
+    } if (date2 != null) {
+      this.profileForm.controls['Certificate_date1'].setValue(moment(date2).format('YYYY-MM-DD'));
+    } if (date3 != null) {
+      this.profileForm.controls['Certificate_date2'].setValue(moment(date3).format('YYYY-MM-DD'));
+    }
 
-    // this.postService.PostHome(this.profileForm.value).subscribe((res) => {
-    //   // console.log(res);
-    // })
-
-
-    // this.uploadService.uploadMultiFile(formData).subscribe((res) => {
-    //   // console.log(res);
-    // })
-
-    // this.router.navigate([""]);
-
-  }
-
-  
-
-  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    this.date = moment(event.value);
-    this.selDate = this.date.format('DD');
-    this.selMonth = this.date.format('MM');
-    this.selYear = this.date.format('YYYY');
+    // console.log(this.profileForm.value);
+    if(this.profileForm.get('image0').value == null){this.profileForm.controls['image0'].setValue('NoImageFound.png');}
+    if(this.profileForm.get('image1').value == null){this.profileForm.controls['image1'].setValue('NoImageFound.png');}
+    if(this.profileForm.get('image2').value == null){this.profileForm.controls['image2'].setValue('NoImageFound.png');}
+    if(this.profileForm.get('image3').value == null){this.profileForm.controls['image3'].setValue('NoImageFound.png');}
+    if(this.profileForm.get('image4').value == null){this.profileForm.controls['image4'].setValue('NoImageFound.png');}
+    if(this.profileForm.get('image5').value == null){this.profileForm.controls['image5'].setValue('NoImageFound.png');}
+    if(this.profileForm.get('image6').value == null){this.profileForm.controls['image6'].setValue('NoImageFound.png');}
+    if(this.profileForm.get('image7').value == null){this.profileForm.controls['image7'].setValue('NoImageFound.png');}
+    if(this.profileForm.get('image8').value == null){this.profileForm.controls['image8'].setValue('NoImageFound.png');}
+    if(this.profileForm.get('image9').value == null){this.profileForm.controls['image9'].setValue('NoImageFound.png');}
     
-  }
 
+    this.postService.PostHome(this.profileForm.value).subscribe((res) => {
+      // console.log(res);
+    })
+
+
+    this.uploadService.uploadMultiFile(formData).subscribe((res) => {
+      // console.log(res);
+    })
+
+    this.router.navigate(["/"]);
+
+  }
   selectImage(event) {
 
 
@@ -223,15 +280,21 @@ export class HomeComponent implements OnInit {
 
   selectMultipleImages(event) {
     if (event.target.files.length > 0) {
-      for (let i = 0; i < event.target.files.length; i++) {
-        let fileToUpload = <File>event.target.files[i];
+      const num = event.target.files.length;
+      
+      for (let i = 1; i <= num; i++) {
+        let fileToUpload = <File>event.target.files[i-1];
+        // console.log('fileToUpload',fileToUpload);
         let fileName: string = this.profileForm.value.Name + '-' + 'Picture_' + i;
+        // console.log('fileName',fileName);
         let fileExtension: string = fileToUpload.name.split('.').pop();
+        // console.log('fileExtension',fileExtension);
         const newFile: File = new File([fileToUpload], fileName + '.' + fileExtension, { type: fileExtension });
+        // console.log('newFile',newFile);
         this.multipleImages.push(newFile);
       }
     }
-    // console.log(this.multipleImages);
+    console.log(this.multipleImages);
 
     for (let name of this.multipleImages) {
       this.ImageName.push(name.name);
@@ -309,12 +372,12 @@ export class HomeComponent implements OnInit {
     }
 
 
-    // console.log(this.multipleImages);
-    // console.log('formData',formData);
+    console.log(this.multipleImages);
+    console.log('formData',formData);
 
 
     this.uploadService.uploadMultiFile(formData).subscribe((res) => {
-      // console.log(res);
+      console.log(res);
     })
   }
 
@@ -322,5 +385,12 @@ export class HomeComponent implements OnInit {
     const index = this.Images.indexOf(image);
     this.Images.splice(index, 1);
     this.allfiles.splice(index, 1);
+  }
+
+  DeleteIMG(name) {
+    const index = this.ViewImage.indexOf(name);
+    this.ViewImage.splice(index, 1);
+    this.allfiles.splice(index, 1);
+    console.log(name);
   }
 }

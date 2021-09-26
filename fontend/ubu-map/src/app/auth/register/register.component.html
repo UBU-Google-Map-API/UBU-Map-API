@@ -76,25 +76,25 @@
             <div class="col-md-9">
                 <mat-card>
                     <mat-card-header>
-                        <mat-card-title>Create New User</mat-card-title>
+                        <mat-card-title>เพิ่มผู้ใช้ใหม่</mat-card-title>
                     </mat-card-header>
                     <hr>
                     <div>
                         <form [formGroup]="signupForm" (ngSubmit)="signup()" novalidate>
                             <mat-form-field appearance="outline" class="input-custom" class="full">
-                                <mat-label>Name</mat-label>
+                                <mat-label>ชื่อ</mat-label>
                                 <input matInput placeholder="Name" formControlName="name" />
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="input-custom" class="full">
-                                <mat-label>username</mat-label>
+                                <mat-label>ชื่อผู้ใช้</mat-label>
                                 <input matInput placeholder="UserName" formControlName="username" />
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="input-custom" class="full">
-                                <mat-label>Password</mat-label>
+                                <mat-label>รหัสผ่าน</mat-label>
                                 <input matInput type="password" placeholder="Password" formControlName="password" />
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="input-custom" class="full">
-                                <mat-label>Roles</mat-label>
+                                <mat-label>บทบาท</mat-label>
                                 <mat-select formControlName="roles" required>
                                     <mat-option *ngFor="let r of role" [value]="r">
                                         {{r}}
@@ -102,8 +102,8 @@
                                 </mat-select>
                             </mat-form-field>
                             <div fxLayout="row" fxLayoutAlign="space-between none">
-                                <button mat-raised-button color="primary" (click)='back()'><span class="material-icons">arrow_back</span>Back</button>
-                                <button mat-raised-button color="primary" [disabled]="!signupForm.valid" type="submit"><span>Create</span></button>
+                                <button mat-raised-button color="primary" (click)='back()'><span class="material-icons">arrow_back</span>ย้อนกลับ</button>
+                                <button mat-raised-button color="primary" [disabled]="!signupForm.valid" type="submit"><span>เพิ่มผู้ใช้</span></button>
                             </div>
                         </form>
                     </div>

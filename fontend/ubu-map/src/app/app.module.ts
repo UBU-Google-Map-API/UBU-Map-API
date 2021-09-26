@@ -43,6 +43,7 @@ import { EditComponent } from './layouts/edit/edit.component';
 import { FileListComponent } from './layouts/file-list/file-list.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { VideosComponent } from './layouts/videos/videos.component';
+import { MainComponent } from './layouts/main/main.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,7 @@ import { VideosComponent } from './layouts/videos/videos.component';
     EditComponent, 
     FileListComponent, 
     FooterComponent, 
-    VideosComponent,
+    VideosComponent, MainComponent,
   ],
   imports: [
     BrowserModule,

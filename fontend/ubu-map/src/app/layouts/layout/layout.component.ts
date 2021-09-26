@@ -38,7 +38,8 @@ export class LayoutComponent implements OnInit {
 
 
   title = 'testImage'
-  homeSlider = { items: 1, dots: true, nav: true, loop: true, autoplay: true, autoplayTimeout: 3000, autoplayHoverPause: true };
+  homeSlider = { items: 1, loop: true, autoplay: true, autoplayTimeout: 3000, autoplayHoverPause: true };
+  // homeSlider = { items: 1, dots: true, nav: true, loop: true, autoplay: true, autoplayTimeout: 3000, autoplayHoverPause: true };
   userName: string;
   details: any;
   imageName = [];
@@ -55,31 +56,63 @@ export class LayoutComponent implements OnInit {
 
     this.postService.getPostData(this.userName).subscribe((res: any) => {
       this.details = res;
+      // console.log(this.details);
+      
 
       this.details[0]['date1'] = `${parseInt(moment.utc(this.details[0].Register_date).format('DD'))} ${this.month[parseInt(moment.utc(this.details[0].Register_date).format('MM')) - 1]} ${parseInt(moment.utc(this.details[0].Register_date).format('YYYY')) + 543}`;
       this.details[0]['date2'] = `${parseInt(moment.utc(this.details[0].Certificate_date1).format('DD'))} ${this.month[parseInt(moment.utc(this.details[0].Certificate_date1).format('MM')) - 1]} ${parseInt(moment.utc(this.details[0].Certificate_date1).format('YYYY')) + 543}`;
       this.details[0]['date3'] = `${parseInt(moment.utc(this.details[0].Certificate_date2).format('DD'))} ${this.month[parseInt(moment.utc(this.details[0].Certificate_date2).format('MM')) - 1]} ${parseInt(moment.utc(this.details[0].Certificate_date2).format('YYYY')) + 543}`;
+      // console.log(this.details);
+      // console.log(this.details[0].Certificate_date1);
 
-      console.log(this.details);
+      const day = parseInt(moment.utc(this.details[0].Certificate_date1).format('DD'));
+      const mont = this.month[parseInt(moment.utc(this.details[0].Certificate_date1).format('MM')) - 1];
+      const year = parseInt(moment.utc(this.details[0].Certificate_date1).format('YYYY')) + 543
+      // console.log("DAY",day);
+      // console.log("Mont",mont);
+      // console.log("Year",year);
+      
+      
       // console.log('date1',this.details[0]['date1']);
       // console.log('date2',this.details[0]['date2']);
       // console.log('date3',this.details[0]['date3']);
-
-
       res.forEach(element => {
-        this.imageName.push(element.Picture_1);
-        this.imageName.push(element.Picture_2);
-        this.imageName.push(element.Picture_3);
-        this.imageName.push(element.Picture_4);
-        this.imageName.push(element.Picture_5);
-        this.imageName.push(element.Picture_6);
-        this.imageName.push(element.Picture_7);
-        this.imageName.push(element.Picture_8);
-        this.imageName.push(element.Picture_9);
-        this.imageName.push(element.Picture_10);
+        // console.log(element);
+        if(element.Picture_1 != "NoImageFound.png"){
+          this.imageName.push(element.Picture_1);
+        }if(element.Picture_2 != "NoImageFound.png"){
+          this.imageName.push(element.Picture_2);
+        }if(element.Picture_3 != "NoImageFound.png"){
+          this.imageName.push(element.Picture_3);
+        }if(element.Picture_4 != "NoImageFound.png"){
+          this.imageName.push(element.Picture_4);
+        }if(element.Picture_5 != "NoImageFound.png"){
+          this.imageName.push(element.Picture_5);
+        }if(element.Picture_6 != "NoImageFound.png"){
+          this.imageName.push(element.Picture_6);
+        }if(element.Picture_7 != "NoImageFound.png"){
+          this.imageName.push(element.Picture_7);
+        }if(element.Picture_8 != "NoImageFound.png"){
+          this.imageName.push(element.Picture_8);
+        }if(element.Picture_9 != "NoImageFound.png"){
+          this.imageName.push(element.Picture_9);
+        }if(element.Picture_10 != "NoImageFound.png"){
+          this.imageName.push(element.Picture_10);
+        }
+        
+        // this.imageName.push(element.Picture_1);
+        // this.imageName.push(element.Picture_2);
+        // this.imageName.push(element.Picture_3);
+        // this.imageName.push(element.Picture_4);
+        // this.imageName.push(element.Picture_5);
+        // this.imageName.push(element.Picture_6);
+        // this.imageName.push(element.Picture_7);
+        // this.imageName.push(element.Picture_8);
+        // this.imageName.push(element.Picture_9);
+        // this.imageName.push(element.Picture_10);
       });
-
     })
+    
 
 
   }

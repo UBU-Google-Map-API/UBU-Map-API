@@ -25,10 +25,10 @@
                     <hr>
                     <div fxLayout="row" fxLayoutAlign="space-between center">
                         <button mat-flat-button color="primary" routerLink="/signup">
-                        <mat-icon>add</mat-icon>Add
+                        <mat-icon>add</mat-icon>เพิ่มข้อมูล
                     </button>
                         <mat-form-field class="mat-form-field">
-                            <mat-label><span class="material-icons">search</span></mat-label>
+                            <mat-label><span class="material-icons">ค้นหา</span></mat-label>
                             <br>
                             <input matInput (keyup)="applyFilter($event)" placeholder="Search..." #input>
                         </mat-form-field>
@@ -37,17 +37,17 @@
                         <div class="example-container mat-elevation-z8">
                             <mat-table [dataSource]="dataSource" matSort>
                                 <ng-container matColumnDef="name">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> ชื่อ </mat-header-cell>
                                     <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
                                 </ng-container>
 
                                 <ng-container matColumnDef="username">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Username </mat-header-cell>
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> ชื่อผู้ใช้ </mat-header-cell>
                                     <mat-cell *matCellDef="let row"> {{row.username}} </mat-cell>
                                 </ng-container>
 
                                 <ng-container matColumnDef="Role">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> บทบาท </mat-header-cell>
                                     <mat-cell *matCellDef="let row">
                                         <p *ngIf="row.role_id == 1">Admin</p>
 
@@ -57,7 +57,7 @@
                                 </ng-container>
 
                                 <ng-container matColumnDef="Action">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> ดูข้อมูล / แก้ไข / ลบ </mat-header-cell>
                                     <mat-cell *matCellDef="let row">
                                         <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" (click)='Views(row.id)'>
                                             <mat-icon>visibility</mat-icon>

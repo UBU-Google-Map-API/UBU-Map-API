@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators,FormBuilder,FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from "src/app/services/auth.service";
 import { Location } from '@angular/common';
@@ -12,22 +12,22 @@ import { Location } from '@angular/common';
 export class LoginComponent implements OnInit {
   hide = true;
   invalidLogin = false;
-  massage:any;
+  massage: any;
   // formBuilder: any;
-  
+
   constructor(
-    private formBuilder:FormBuilder,
+    private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthService,
     private location: Location
-    ) { }
+  ) { }
 
   loginForm: FormGroup;
 
   ngOnInit(): void {
     this.loginForm = this.createFormGroup();
     // console.log(this.loginForm);
-    
+
     // this.loginForm = this.formBuilder.group({
     //   username: ['',Validators.required],
     //   password: ['',Validators.required]
@@ -45,8 +45,18 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     this.authService
-      .login(this.loginForm.value.username, this.loginForm.value.password)
-      .subscribe();
+      .login(this.loginForm.value.username, this.loginForm.value.password).subscribe(
+        (serverLoginResponse: any) => { 
+          // console.log('serverLoginResponse',serverLoginResponse);
+        }, (serverLoginError: any) => {
+          // console.log('error in subscribe err');
+          console.log(serverLoginError.statusText, serverLoginError.status);
+          if (serverLoginError.status === 401) {
+
+            this.loginForm.controls['password'].setErrors({invalid: true});
+          }
+        }
+      );
   }
   back(): void {
     this.location.back()

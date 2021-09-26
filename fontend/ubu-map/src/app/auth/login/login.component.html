@@ -5,16 +5,19 @@
                 <img src="https://upload.wikimedia.org/wikipedia/th/2/29/Logoubu.gif" id="icon" alt="User Icon">
             </div>
             <mat-form-field appearance="outline" style="width: 100%;">
-                <mat-label class="center">Username</mat-label>
+                <mat-label class="center">ผู้ใช้งาน</mat-label>
                 <input matInput placeholder="User.." formControlName="username" />
             </mat-form-field>
             <mat-form-field appearance="outline" style="width: 100%;">
-                <mat-label class="center">Password</mat-label>
+                <mat-label class="center">รหัสผ่าน</mat-label>
                 <input matInput type="password" placeholder="xxx" formControlName="password" />
+                <div [hidden]="!loginForm.controls['password'].hasError('invalid')" class="alert alert-danger">
+                    ไม่มีบัญชีผู้ใช้ที่ตรงกับข้อมูลที่ป้อน! ลองอีกครั้ง
+                </div>
             </mat-form-field>
             <div fxLayout="row" fxLayoutAlign="space-between none">
-                <button mat-raised-button color="primary" (click)='back()'><span class="material-icons">arrow_back</span>Back</button>
-                <button color="accent" mat-raised-button type="submit"><span class="material-icons">login</span>LOGIN</button>
+                <button mat-raised-button color="primary" (click)='back()'><span class="material-icons">arrow_back</span>ย้อนกลับ</button>
+                <button color="accent" mat-raised-button type="submit"><span class="material-icons">login</span>เข้าสู่ระบบ</button>
             </div>
         </form>
     </mat-card>

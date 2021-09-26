@@ -8,13 +8,20 @@
                     <div id="content" class="form-group col-md-12 row">
                         <div class="col-md-12">
                             <a routerLink="/detail/{{location.Name}}" routerLinkActive="active" tabindex="0">
-                                <h1 id="firstHeading" class="firstHeading">{{ location.Name }}</h1>
+                                <h3 id="firstHeading" class="firstHeading">{{ location.Name }}</h3>
                             </a>
                         </div><br>
-                        <div id="bodyContent" class="col-md-6">
-                            <p></p>
-                            <h6>{{ location.Name }}</h6><br>ที่อยู่ : {{ location.Address }} {{location.Province}}<br>ระดับ: {{ location.Status }}
-                            <p></p>
+
+                        <div class="col-md-6">
+                            <h5>{{ location.Name }}</h5>
+                            <br>
+                            <b style="font-weight:bold;">พืชศึกษา : </b> {{ location.Study_Plants }}
+                            <br>
+                            <b style="font-weight:bold;">ที่อยู่ : </b> {{ location.Address }} {{location.Province}}
+                            <br>
+                            <b style="font-weight:bold;">ระดับ: </b> {{ location.Status }}
+                            <br>
+                            <p><b style="font-weight:bold;">หมวดหมู่:</b> {{ location.Category }}</p>
                         </div>
                         <div id="bodyContent" class="col-md-4">
                             <center><img src="http://localhost:3000/images/{{location.Picture_1}} " alt="รูปประกอบ" height="230" width="300"></center>
@@ -34,9 +41,15 @@
                             </a>
                         </div><br>
                         <div id="bodyContent" class="col-md-6">
-                            <p></p>
-                            <h6>{{ location.Name }}</h6><br>ที่อยู่ : {{ location.Address }} {{location.Province}}<br>ระดับ: {{ location.Status }}
-                            <p></p>
+                            <h5>{{ location.Name }}</h5>
+                            <br>
+                            <b style="font-weight:bold;">พืชศึกษา : </b> {{ location.Study_Plants }}
+                            <br>
+                            <b style="font-weight:bold;">ที่อยู่ : </b> {{ location.Address }} {{location.Province}}
+                            <br>
+                            <b style="font-weight:bold;">ระดับ: </b> {{ location.Status }}
+                            <br>
+                            <p><b style="font-weight:bold;">หมวดหมู่:</b> {{ location.Category }}</p>
                         </div>
                         <div id="bodyContent" class="col-md-4">
                             <center><img src="http://localhost:3000/images/{{location.Picture_1}} " alt="รูปประกอบ" height="230" width="300"></center>
@@ -56,10 +69,15 @@
                             </a>
                         </div><br>
                         <div id="bodyContent" class="col-md-6">
-                            <p></p>
-                            <h6>{{ location.Name }}</h6><br>ที่อยู่ : {{ location.Address }} {{location.Province}}<br>ระดับ: {{ location.Status }}
-                            <br>หมวดหมู่: {{ location.Category }}
-                            <p></p>
+                            <h5>{{ location.Name }}</h5>
+                            <br>
+                            <b style="font-weight:bold;">พืชศึกษา : </b> {{ location.Study_Plants }}
+                            <br>
+                            <b style="font-weight:bold;">ที่อยู่ : </b> {{ location.Address }} {{location.Province}}
+                            <br>
+                            <b style="font-weight:bold;">ระดับ: </b> {{ location.Status }}
+                            <br>
+                            <p><b style="font-weight:bold;">หมวดหมู่:</b> {{ location.Category }}</p>
                         </div>
                         <div id="bodyContent" class="col-md-4">
                             <center><img src="http://localhost:3000/images/{{location.Picture_1}} " alt="รูปประกอบ" height="230" width="300"></center>

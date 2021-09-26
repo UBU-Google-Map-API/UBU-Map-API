@@ -10,16 +10,17 @@ import { HomeComponent } from './layouts/home/home.component';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { ViewComponent } from './layouts/view/view.component';
 import { EditComponent } from './layouts/edit/edit.component';
+import { MainComponent } from './layouts/main/main.component';
 
 const routes: Routes = [
-  { path: '', component: MapPageComponent, },
+  { path: '', component:  MainComponent},
+  { path: 'map', component: MapPageComponent, },
+  { path: 'detail/:name', component: LayoutComponent},
   { path: 'login', component: LoginComponent },
-  { path: "admin", component: AdminComponent,canActivate: [AuthGuard]},
-  { path: 'views/:id', component: ViewComponent,canActivate: [AuthGuard] },
+  { path: 'admin', component: AdminComponent,canActivate: [AuthGuard]},
+  { path: 'views/:id', component: ViewComponent,canActivate: [AuthGuard]},
   { path: 'edit/:name', component: EditComponent,canActivate: [AuthGuard]},
-  { path: 'detail/:name', component: LayoutComponent, },
   { path: 'signup', component: RegisterComponent,canActivate: [AuthGuard]},
-  // User
   { path: 'home', component: HomeComponent ,canActivate: [AuthGuard]},
   { path: "**", redirectTo: "" },
 

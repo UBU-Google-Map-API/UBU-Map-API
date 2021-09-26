@@ -12,7 +12,10 @@
                 <td>{{i+1}}</td>
                 <td>{{data.Name}}</td>
                 <td>{{data.Province}}</td>
-                <td>{{data.Status}}</td>
+                <!-- <td>{{data.Status}}</td> -->
+                <td *ngIf="data.Status == 'ก.1'">เกียรติบัตรขั้นที่ 1</td>
+                <td *ngIf="data.Status == 'ก.2'">เกียรติบัตรขั้นที่ 2</td>
+                <td *ngIf="data.Status == 'ป้ายพระราชทาน'">ป้ายพระราชทาน</td>
             </tr>
         </table>
 
