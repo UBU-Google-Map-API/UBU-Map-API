@@ -16,7 +16,7 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
   // private url = "http://localhost:3000/auth";
-  private url = "http://202.28.49.95:3000";
+  private url = "http://202.28.49.95:3000/auth";
 
   isUserLoggedIn$ = new BehaviorSubject<boolean>(false);
   userId: Pick<User, "id">;
