@@ -1,6 +1,6 @@
 {
     "host": "localhost",
-    "user": "usr_plant",
+    "user": "root",
     "database": "mapmaker",
-    "password": "kankrao2578"
+    "password": ""
 }

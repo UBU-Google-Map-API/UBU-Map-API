@@ -197,16 +197,16 @@
                             <tr *ngFor="let i of ViewImage">
                                 <th>
                                     <div *ngIf="i == 'NoImageFound.png' || i == null "></div>
-                                    <div *ngIf="i != 'NoImageFound.png' || i == null"><img src="http://localhost:3000/images/{{i}} " height="70px" width="90px"></div>
+                                    <div *ngIf="i != 'NoImageFound.png' || i != null"><img src="http://202.28.49.95:3000/images/{{i}} " height="70px" width="90px"></div>
 
                                 </th>
                                 <td>
                                     <div *ngIf="i == 'NoImageFound.png' || i == null "></div>
-                                    <div *ngIf="i != 'NoImageFound.png' || i == null">{{i}}</div>
+                                    <div *ngIf="i != 'NoImageFound.png' || i != null">{{i}}</div>
                                 </td>
                                 <td>
                                     <div *ngIf="i == 'NoImageFound.png' || i == null "></div>
-                                    <div *ngIf="i != 'NoImageFound.png' ">
+                                    <div *ngIf="i != 'NoImageFound.png' || i != null">
                                         <button mat-raised-button color="warn" (click)='DeleteIMG(i)'><span class="material-icons">delete</span>Delete</button>
                                     </div>
                                 </td>

@@ -6,7 +6,7 @@ exports.fetchAll = async(req, res, next) => {
     // const id = req.params.id;
     // console.log(req.params.id);
     const name = req.params.name;
-    console.log('name', name);
+    // console.log('name', name);
     try {
         const [allPosts] = await Post.fetchAll(name);
         res.status(200).json(allPosts);
@@ -21,7 +21,7 @@ exports.fetchAll = async(req, res, next) => {
 exports.updatePost = async(req, res, next) => {
     // const id = req.params.id;
     const name = req.params.name;
-    console.log(name);
+    // console.log(name);
 
     const errors = validationResult(req);
 
@@ -29,9 +29,11 @@ exports.updatePost = async(req, res, next) => {
 
     const Id = req.body.Id;
     const Name = req.body.Name;
+    const Study_Plants = req.body.Study_Plants;
     const Address = req.body.Address;
     const Province = req.body.Province;
     const Status = req.body.Status;
+    const School_Web = req.body.School_Web;
     const Register_date = req.body.Register_date;
     const Certificate_date1 = req.body.Certificate_date1;
     const Certificate_date2 = req.body.Certificate_date2;
@@ -54,9 +56,11 @@ exports.updatePost = async(req, res, next) => {
         const post = {
             Id: Id,
             Name: Name,
+            Study_Plants: Study_Plants,
             Address: Address,
             Province: Province,
             Status: Status,
+            School_Web: School_Web,
             Register_date: Register_date,
             Certificate_date1: Certificate_date1,
             Certificate_date2: Certificate_date2,
@@ -93,9 +97,11 @@ exports.postPost = async(req, res, next) => {
 
     const Id = req.body.Id;
     const Name = req.body.Name;
+    const Study_Plants = req.body.Study_Plants;
     const Address = req.body.Address;
     const Province = req.body.Province;
     const Status = req.body.Status;
+    const School_Web = req.body.School_Web;
     const Register_date = req.body.Register_date;
     const Certificate_date1 = req.body.Certificate_date1;
     const Certificate_date2 = req.body.Certificate_date2;
@@ -118,9 +124,11 @@ exports.postPost = async(req, res, next) => {
         const post = {
             Id: Id,
             Name: Name,
+            Study_Plants: Study_Plants,
             Address: Address,
             Province: Province,
             Status: Status,
+            School_Web: School_Web,
             Register_date: Register_date,
             Certificate_date1: Certificate_date1,
             Certificate_date2: Certificate_date2,
@@ -139,6 +147,7 @@ exports.postPost = async(req, res, next) => {
             Picture_9: Picture_9,
             Picture_10: Picture_10,
         };
+
         const result = await Post.save(post);
         // const dateupdate = await Post.updatedate();
         res.status(201).json({ message: 'Posted!' });

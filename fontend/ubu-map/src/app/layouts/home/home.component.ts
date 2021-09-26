@@ -254,7 +254,7 @@ export class HomeComponent implements OnInit {
       // console.log(res);
     })
 
-    this.router.navigate(["/"]);
+    this.router.navigate(["/map"]);
 
   }
   selectImage(event) {
@@ -391,6 +391,6 @@ export class HomeComponent implements OnInit {
     const index = this.ViewImage.indexOf(name);
     this.ViewImage.splice(index, 1);
     this.allfiles.splice(index, 1);
-    console.log(name);
+    // console.log(name);
   }
 }

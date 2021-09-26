@@ -130,7 +130,7 @@ export class EditComponent implements OnInit {
           this.ViewImage.splice(i);
         }
       }
-      console.log(this.ViewImage);
+      // console.log(this.ViewImage);
 
       this.userID = res[0].id;
 
@@ -237,7 +237,7 @@ export class EditComponent implements OnInit {
       // console.log(res);
     })
 
-    this.router.navigate(["/"]);
+    // this.router.navigate(["/"]);
   }
 
   DeleteIMG(name) {
@@ -260,7 +260,6 @@ export class EditComponent implements OnInit {
           'รูปภาพถูกลบออก',
           'success'
         )
-        this.location.back();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
           'ยกเลิก',
